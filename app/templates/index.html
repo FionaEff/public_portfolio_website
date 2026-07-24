@@ -1,0 +1,18 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="landing-page">
+    <div>
+        <p><h3>Your Name</h3></p>
+        <br>
+        <p>Catchphrase</p>
+        <br><br>
+        <p><b>Some</b></p>
+        <p><b>of your</b></p>
+        <p><b>Skills</b></p>
+    </div>
+    <div>
+        <img src="{{ url_for('static', filename='images/image.jpg') }}">
+    </div>
+</div>
+
+{% endblock %}

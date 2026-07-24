@@ -1,0 +1,484 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: currentColor;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #FF6363;
+}
+
+h1 {
+    font-family: "Roboto Slab";
+}
+
+h3 {
+    font-family: "Roboto Slab";
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("../fonts/roboto.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Roboto Slab";
+    src: url("../fonts/robotoslab.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 70%;
+    height: 100px;
+    font-size: 1.5rem;
+    font-family: "Roboto Slab";
+    background-color: white;
+}
+
+.navbar ul {
+    overflow: hidden;
+}
+
+.navbar ul li {
+    float: left;
+}
+    
+.navbar a {
+    padding: 3rem;
+}
+
+.navbar a:hover {
+    text-decoration: none;
+    color: #FF6363;
+}
+
+.sidebar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 30%;
+    height: 100vh;
+    background-color: #FF6363;
+}
+
+.sidebar-inner-top-container {
+    width: 80%;
+    height: 20%;
+    font-family: "Roboto";
+
+    ul {
+        overflow: hidden;
+    }
+
+    ul li {
+        display: flex;
+        justify-content: center;
+        font-family: "Roboto";
+    }
+
+    ul li h2 {
+        font-family: "Roboto Slab";
+        padding-bottom: 8px;
+    }
+}
+
+.sidebar-inner-lower-container {
+    width: 80%;
+    height: 60%;
+
+    ul {
+        overflow: hidden;
+    }
+
+    ul li {
+        display: flex;
+        justify-content: left;
+        font-family: "Roboto";
+    }
+
+    ul li h3 {
+        font-family: "Roboto Slab";
+        padding-bottom: 8px;
+        margin: 0;
+    }
+
+    ul li a:hover {
+        color: black;
+        text-decoration: underline;
+    }
+}
+
+.sidebar-svg {
+    width: 22px;
+    height: 22px;
+    padding-right: 6px;
+}
+
+.sidebar-inner-lower-container hr {
+    margin-bottom: 8px;
+}
+
+.content-box {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 100px;
+    bottom: 65px;
+    background-color: white;
+    width: 70%;
+    height: calc(100% - 100px - 65px);
+    overflow: auto;
+}
+
+.flashed-messages {
+    position: absolute;
+    top: 120px;
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    font-family: "Roboto";
+}
+
+.landing-page {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    align-items:center;
+    width: 80%;
+    font-family: "Roboto";
+}
+
+.landing-page div {
+    padding: 10px;
+    text-align: right;
+}
+
+.landing-page img {
+    border-radius: 10px 10px 10px 10px;
+}
+
+.contact {
+    display: grid;
+    justify-content: center;
+    height: 90%;
+    width: 95%;
+}
+
+.contact-form {
+    border-radius: 5px;
+    padding: 20px;
+    width: 100%;
+
+    label {
+        display: block;
+        font-family: "Roboto Slab";
+    }
+
+    input[type=text], select {
+        width: 500px;
+        padding: 12px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-family: "Roboto";
+        font-size: 16px;
+        background-color: #E9E9ED;
+    }
+
+    input[type=email] {
+        width: 500px;
+        padding: 12px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-family: "Roboto";
+        font-size: 16px;
+        background-color: #E9E9ED;
+    }
+
+    textarea {
+        width: 500px;
+        height: 150px;
+        padding: 12px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-family: "Roboto";
+        font-size: 16px;
+        background-color: #E9E9ED;
+    }
+
+    input[type=submit] {
+        width: 200px;
+        padding: 14px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: "Roboto";
+    }
+
+    input[type=submit]:hover {
+        background-color: #FF6363;
+    }
+}
+
+.projects {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    position: absolute;
+    top: 100px;
+    margin-top: 5%;
+}
+
+.project-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    font-family: "Roboto";
+    margin: 1rem;
+    width: 400px;
+    height: 170px;
+}
+
+.project-card h4 {
+        font-family: "Roboto Slab";
+        padding-bottom: 1rem;
+    }
+
+.project-card hr {
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+    }
+
+.project-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.project-card-container {
+    padding: 2px 16px;
+}
+
+.about-me {
+    display: grid;
+    grid-template-columns: auto auto;
+    height: 90%;
+    width: 80%;
+}
+
+.about-me div {
+    padding: 10px;
+    text-align: left;
+}
+
+.about-me-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    font-family: "Roboto";
+    width: 350px;
+}
+
+.about-me-card h4 {
+        font-family: "Roboto Slab";
+        padding-bottom: 5px;
+    }
+
+.about-me-card img {
+        border-radius: 5px 5px 0 0;
+        width: 100%;
+        height: auto;
+    }
+
+.about-me-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.about-me-card-container {
+    padding: 2px 16px;
+}
+
+.about-me-text {
+    font-family: "Roboto";
+}
+
+footer {
+    width: 70%;
+    height: 65px;
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+    background-color: white;
+}
+
+.copyright {
+    font-family: "Roboto";
+    font-size: 12px;
+    text-align: center;
+}
+
+.legal {
+    font-family: "Roboto";
+    font-size: 12px;
+    text-align: center;
+}
+
+.legal-text {
+    font-family: "Roboto";
+    text-align: left;
+    width: 95%;
+    height: 100%;
+
+    h1 {
+        padding-bottom: 1rem;
+    }
+
+    h3 {
+        padding: 1rem 0 1rem 0;
+    }
+}
+
+.data-privacy-text {
+    font-family: "Roboto";
+    text-align: left;
+    width: 95%;
+    height: 100%;
+}
+
+@media (max-width: 1200px) {
+    .project-card {
+        width: 300px;
+    }
+}
+
+@media (max-width: 1076px) {
+    .navbar a {
+        padding: 1.2rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .projects {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto auto auto;
+    }
+
+    .about-me-card {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar a {
+        padding: 0.7rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .sidebar {
+        display: none;
+    }
+
+    .navbar {
+        width: 100%;
+        height: 70px;
+        font-size: 1rem;
+    }
+
+    .content-box {
+        top: 70px;
+        bottom: 40px;
+        width: 100%;
+        height: calc(100vh - 70px - 40px);
+    }
+
+    .landing-page {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto;
+        justify-content: center;
+        align-items:center;
+        width: 100%;
+        font-family: "Roboto";
+        margin-top: 0;
+    }
+
+    .landing-page div {
+        text-align: center;
+    }
+
+    .landing-page img {
+        width: 90%;
+        height: auto;
+    }
+
+    .about-me {
+        grid-template-columns: auto;
+        width: 85%;
+        height: 100%;
+    }
+
+    .contact-form {
+        input[type=text] {
+            width: 300px;
+        }
+
+        input[type=email] {
+            width: 300px;
+        }
+
+        textarea {
+            width: 300px;
+        }
+    }
+
+    footer {
+        width: 100%;
+        height: 40px;
+    }
+}

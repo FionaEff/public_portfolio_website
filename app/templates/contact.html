@@ -1,0 +1,19 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="contact">
+    <form class="contact-form" action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.name.label }}
+            {{ form.name(maxlength=100) }}<br><br>
+            {{ form.email.label }}
+            {{ form.email(maxlength=254) }}<br><br>
+            {{ form.subject.label }}
+            {{ form.subject(maxlength=150) }}<br><br>
+            {{ form.message.label }}
+            {{ form.message(maxlength=5000, rows=8) }}
+        </p>
+        <p><br><br>{{ form.submit() }}</p>
+    </form>
+</div>
+{% endblock %}

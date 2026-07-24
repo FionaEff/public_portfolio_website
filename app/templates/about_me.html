@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="about-me">
+    <div>
+        <div class="about-me-card"> 
+            <img src="{{ url_for('static', filename='images/image.jpg') }}" alt="Your Name">
+            <div class="about-me-card-container">
+                <h4>Your Name</h4>
+                <p>
+                    Your Job<br>
+                    <b>Apprenticeship</b>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="about-me-text">
+            <p>
+                Your text about yourself.
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

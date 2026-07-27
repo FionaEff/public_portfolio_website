@@ -1,9 +1,11 @@
 import urllib.request
 import urllib.error
 import json
+import os
+from datetime import datetime, timezone
 from config import Config
 
-github_api_url = ""
+github_api_url = "https://api.github.com/users/<yourusername>/repos"
 
 
 def get_repos():
@@ -28,3 +30,17 @@ def get_repos():
 
     except urllib.error.URLError as err:
         return f"An error happened! Reason: {err.reason}"
+
+
+def create_cache_file(github_data):
+
+    created_at = datetime.now(timezone.utc).isoformat()
+    cache_path = "./app/services/data/github_data.json"
+
+    data = {"metadata": {"created_at": created_at}, "repositories": github_data}
+
+    if not os.path.exists("./app/services/data"):
+        os.makedirs("./app/services/data")
+
+    with open(cache_path, "w") as file:
+        json.dump(data, file, indent=4)

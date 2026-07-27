@@ -1,8 +1,11 @@
 from flask import render_template, jsonify, flash, redirect, url_for, current_app
 from app.main.forms import ContactForm
 from app.main import bp
-from app.services.github_api import get_repos
+from app.services.github_api import get_repos, create_cache_file
 from app.email import send_email
+from datetime import datetime, timezone, timedelta
+import json
+import os
 
 
 @bp.route("/", methods=["GET"])
@@ -24,7 +27,25 @@ def projects():
 @bp.route("/api/github")
 def github_api():
 
-    repos = get_repos()
+    cache_path = "./app/services/data/github_data.json"
+    current_time = datetime.fromisoformat(datetime.now(timezone.utc).isoformat())
+
+    if not os.path.isfile(cache_path):
+        repos = get_repos()
+        create_cache_file(repos)
+
+    else:
+        with open(cache_path, "r") as file:
+            cache_file = json.load(file)
+
+            created_at = datetime.fromisoformat(cache_file["metadata"]["created_at"])
+
+            if (current_time - created_at) < timedelta(days=1):
+                repos = cache_file["repositories"]
+
+            else:
+                repos = get_repos()
+                create_cache_file(repos)
 
     return jsonify(repos)
 

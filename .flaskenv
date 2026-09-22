@@ -1,2 +1,2 @@
-FLASK_APP=website.py
-FLASK_DEBUG=1
+FLASK_APP=public_portfolio_website.py
+FLASK_DEBUG=0

@@ -3,6 +3,7 @@ from app.main.forms import ContactForm
 from app.main import bp
 from app.services.github_api import get_repos, create_cache_file
 from app.email import send_email
+from app import limiter
 from datetime import datetime, timezone, timedelta
 import json
 import os
@@ -50,14 +51,24 @@ def github_api():
     return jsonify(repos)
 
 
-@bp.route("/contact", methods=["GET", "POST"])
+@bp.route("/contact", methods=["GET"])
 def contact():
+
+    form = ContactForm()
+
+    return render_template("contact.html", title="Kontakt", form=form)
+
+
+@bp.route("/contact", methods=["POST"])
+@limiter.limit("1/minute;2/day")
+def contact_form_submit():
 
     form = ContactForm()
 
     if form.validate_on_submit():
 
-        try:
+        if form.validate():
+
             send_email(
                 name=form.name.data,
                 email=form.email.data,
@@ -65,19 +76,12 @@ def contact():
                 message=form.message.data,
             )
 
-        except Exception as err:
-            current_app.logger.exception(f"Contact Form Error: {err}")
-
-            flash(
-                "Beim Versenden Ihrer Nachricht ist ein Fehler aufgetreten. Bitte versuchen Sie es später nochmal.",
-                "danger",
-            )
-
-        else:
-
             flash("Ihre Nachricht wurde versendet.", "success")
 
-        return redirect(url_for("main.contact"))
+            return redirect(url_for("main.contact"))
+
+        else:
+            return render_template("contact.html", title="Kontakt", form=form)
 
     return render_template("contact.html", title="Kontakt", form=form)
 

@@ -1,18 +1,19 @@
 import os
 import logging
 from flask import Flask
-from flask_mail import Mail
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 from logging.handlers import RotatingFileHandler
 from config import Config
 
-mail = Mail()
+limiter = Limiter(get_remote_address, default_limits=[])
 
 
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
 
-    mail.init_app(app)
+    limiter.init_app(app)
 
     from app.errors import bp as errors_bp
 

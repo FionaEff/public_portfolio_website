@@ -33,7 +33,10 @@ def github_api():
 
     if not os.path.isfile(cache_path):
         repos = get_repos()
-        create_cache_file(repos)
+        if repos:
+            create_cache_file(repos)
+        else:
+            return render_template("errors/no_github_data.html", title="GitHub Error")
 
     else:
         with open(cache_path, "r") as file:
@@ -46,7 +49,12 @@ def github_api():
 
             else:
                 repos = get_repos()
-                create_cache_file(repos)
+                if repos:
+                    create_cache_file(repos)
+                else:
+                    return render_template(
+                        "errors/no_github_data.html", title="GitHub Error"
+                    )
 
     return jsonify(repos)
 

@@ -7,25 +7,25 @@
             {{ form.name.label }}
             {{ form.name(maxlength=100) }}
             {% for error in form.name.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <br><span style="color: red;">[{{ error }}]</span>
             {% endfor %}
             <br><br>
             {{ form.email.label }}
             {{ form.email(maxlength=254) }}
             {% for error in form.email.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <br><span style="color: red;">[{{ error }}]</span>
             {% endfor %}
             <br><br>
             {{ form.subject.label }}
             {{ form.subject(maxlength=150) }}
             {% for error in form.subject.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <br><span style="color: red;">[{{ error }}]</span>
             {% endfor %}
             <br><br>
             {{ form.message.label }}
             {{ form.message(maxlength=5000, rows=8) }}
             {% for error in form.message.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <br><span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p><br><br>{{ form.submit() }}</p>
